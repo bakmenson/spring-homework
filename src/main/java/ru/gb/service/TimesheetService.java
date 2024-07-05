@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.gb.model.Timesheet;
 import ru.gb.repository.TimesheetRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +26,7 @@ public class TimesheetService {
   }
 
   public Timesheet create(Timesheet timesheet) {
+    timesheet.setCreatedAt(LocalDate.now());
     return repository.create(timesheet);
   }
 
