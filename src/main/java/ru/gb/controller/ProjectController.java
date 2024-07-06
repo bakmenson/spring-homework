@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.model.Project;
+import ru.gb.model.Timesheet;
 import ru.gb.service.ProjectService;
 
 import java.util.List;
@@ -50,6 +51,11 @@ public class ProjectController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/timesheets")
+    public ResponseEntity<List<Timesheet>> getProjectTimesheets(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getProjectTimesheets(id));
     }
 
 }
