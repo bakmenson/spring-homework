@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class Timesheet {
 
   private Long id;
-  private String project;
+  private Long projectId;
   private int minutes;
   private LocalDate createdAt;
 
