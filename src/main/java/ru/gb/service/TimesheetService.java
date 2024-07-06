@@ -10,6 +10,7 @@ import ru.gb.repository.TimesheetRepository;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -54,4 +55,15 @@ public class TimesheetService {
         repository.delete(id);
     }
 
+    public List<Timesheet> getCreatedAfter(LocalDate date) {
+        return repository.getAll().stream()
+                .filter(timesheet -> timesheet.getCreatedAt().isAfter(ChronoLocalDate.from(date)))
+                .toList();
+    }
+
+    public List<Timesheet> getCreatedBefore(LocalDate date) {
+        return repository.getAll().stream()
+                .filter(timesheet -> timesheet.getCreatedAt().isBefore(ChronoLocalDate.from(date)))
+                .toList();
+    }
 }

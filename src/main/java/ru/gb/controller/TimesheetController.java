@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import ru.gb.model.Timesheet;
 import ru.gb.service.TimesheetService;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -67,6 +70,16 @@ public class TimesheetController {
 
         // 204 No Content
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(params = "createdAfter")
+    public ResponseEntity<List<Timesheet>> getCreatedAfter(@RequestParam LocalDate createdAfter) {
+        return ResponseEntity.ok(service.getCreatedAfter(createdAfter));
+    }
+
+    @GetMapping(params = "createdBefore")
+    public ResponseEntity<List<Timesheet>> getCreatedBefore(@RequestParam LocalDate createdBefore) {
+        return ResponseEntity.ok(service.getCreatedBefore(createdBefore));
     }
 
 }
