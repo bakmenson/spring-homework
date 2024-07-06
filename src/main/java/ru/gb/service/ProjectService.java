@@ -1,5 +1,6 @@
 package ru.gb.service;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import ru.gb.model.Project;
 import ru.gb.model.Timesheet;
@@ -14,7 +15,7 @@ public class ProjectService {
     private final ProjectRepository repository;
     private final TimesheetService timesheetService;
 
-    public ProjectService(ProjectRepository repository, TimesheetService timesheetService) {
+    public ProjectService(ProjectRepository repository, @Lazy TimesheetService timesheetService) {
         this.repository = repository;
         this.timesheetService = timesheetService;
     }
