@@ -38,12 +38,9 @@ public class TimesheetController {
     public ResponseEntity<Timesheet> get(@PathVariable Long id) {
         Optional<Timesheet> ts = service.getById(id);
 
-        if (ts.isPresent()) {
-//      return ResponseEntity.ok().body(ts.get());
-            return ResponseEntity.status(HttpStatus.OK).body(ts.get());
-        }
-
-        return ResponseEntity.notFound().build();
+        //      return ResponseEntity.ok().body(ts.get());
+        return ts.map(timesheet -> ResponseEntity.status(HttpStatus.OK).body(timesheet))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping // получить все
