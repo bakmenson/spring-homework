@@ -1,16 +1,13 @@
 package ru.gb.service;
 
 import org.springframework.context.annotation.Lazy;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.gb.model.Project;
 import ru.gb.model.Timesheet;
 import ru.gb.repository.TimesheetRepository;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
