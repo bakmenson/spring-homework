@@ -1,6 +1,7 @@
 package ru.gb.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.model.Project;
@@ -55,7 +56,12 @@ public class ProjectController {
 
     @GetMapping("/{id}/timesheets")
     public ResponseEntity<List<Timesheet>> getProjectTimesheets(@PathVariable Long id) {
-        return ResponseEntity.ok(service.getProjectTimesheets(id));
+
+        if (getById(id).getStatusCode().isSameCodeAs(HttpStatus.OK)) {
+            return ResponseEntity.ok(service.getProjectTimesheets(id));
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
 }
