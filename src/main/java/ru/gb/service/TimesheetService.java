@@ -1,9 +1,9 @@
 package ru.gb.service;
 
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import ru.gb.model.Project;
 import ru.gb.model.Timesheet;
+import ru.gb.repository.ProjectRepository;
 import ru.gb.repository.TimesheetRepository;
 
 import java.time.LocalDate;
@@ -16,11 +16,11 @@ import java.util.Optional;
 public class TimesheetService {
 
     private final TimesheetRepository repository;
-    private final ProjectService projectService;
+    private final ProjectRepository projectRepository;
 
-    public TimesheetService(TimesheetRepository repository, @Lazy ProjectService projectService) {
+    public TimesheetService(TimesheetRepository repository, ProjectRepository projectRepository) {
         this.repository = repository;
-        this.projectService = projectService;
+        this.projectRepository = projectRepository;
     }
 
     public Optional<Timesheet> getById(Long id) {
@@ -38,7 +38,7 @@ public class TimesheetService {
             throw new NullPointerException("There is no project id.");
         }
 
-        Optional<Project> project = projectService.getById(timesheet.getProjectId());
+        Optional<Project> project = projectRepository.getById(timesheet.getProjectId());
 
         if (project.isPresent()) {
             timesheet.setCreatedAt(LocalDate.now());

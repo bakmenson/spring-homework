@@ -1,10 +1,10 @@
 package ru.gb.service;
 
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import ru.gb.model.Project;
 import ru.gb.model.Timesheet;
 import ru.gb.repository.ProjectRepository;
+import ru.gb.repository.TimesheetRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,11 +13,11 @@ import java.util.Optional;
 public class ProjectService {
 
     private final ProjectRepository repository;
-    private final TimesheetService timesheetService;
+    private final TimesheetRepository timesheetRepository;
 
-    public ProjectService(ProjectRepository repository, @Lazy TimesheetService timesheetService) {
+    public ProjectService(ProjectRepository repository, TimesheetRepository timesheetRepository) {
         this.repository = repository;
-        this.timesheetService = timesheetService;
+        this.timesheetRepository = timesheetRepository;
     }
 
     public List<Project> getProjects() {
@@ -41,7 +41,7 @@ public class ProjectService {
     }
 
     public List<Timesheet> getProjectTimesheets(Long id) {
-        return timesheetService.getAll().stream()
+        return timesheetRepository.getAll().stream()
                 .filter(timesheet -> timesheet.getProjectId().equals(id))
                 .toList();
     }
