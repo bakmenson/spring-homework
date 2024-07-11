@@ -36,7 +36,7 @@ public class ProjectPageController {
             return "project-page";
         }
 
-        throw new NoSuchElementException("There is not project with id #" + id);
+        throw new NoSuchElementException("There is no project with id #" + id);
     }
 
 }
