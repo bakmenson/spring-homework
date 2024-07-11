@@ -31,7 +31,7 @@ public class TimesheetPageController {
   public String getTimesheetPage(@PathVariable Long id, Model model) {
     Optional<TimesheetPageDto> timesheetOpt = service.findById(id);
     if (timesheetOpt.isEmpty()) {
-      throw new NoSuchElementException();
+      throw new NoSuchElementException("There is no timesheet with id #" + id);
     }
 
     model.addAttribute("timesheet", timesheetOpt.get());
