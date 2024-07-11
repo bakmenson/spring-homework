@@ -24,7 +24,7 @@ public class ProjectService {
         return repository.getProjects();
     }
 
-    public Optional<Project> getById(Long id) {
+    public Optional<Project> findById(Long id) {
         return repository.getById(id);
     }
 

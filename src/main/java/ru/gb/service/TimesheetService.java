@@ -23,11 +23,11 @@ public class TimesheetService {
         this.projectRepository = projectRepository;
     }
 
-    public Optional<Timesheet> getById(Long id) {
+    public Optional<Timesheet> findById(Long id) {
         return repository.getById(id);
     }
 
-    public List<Timesheet> getAll() {
+    public List<Timesheet> findAll() {
         return repository.getAll();
     }
 

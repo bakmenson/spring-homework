@@ -27,7 +27,7 @@ public class ProjectController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Project> getById(@PathVariable Long id) {
-        Optional<Project> project = service.getById(id);
+        Optional<Project> project = service.findById(id);
 
         return project
                 .map(value -> ResponseEntity.ok(project.get()))
@@ -55,7 +55,7 @@ public class ProjectController {
 
     @GetMapping("/{id}/timesheets")
     public ResponseEntity<List<Timesheet>> getProjectTimesheets(@PathVariable Long id) {
-        Optional<Project> project = service.getById(id);
+        Optional<Project> project = service.findById(id);
 
         if (project.isPresent()) {
             return ResponseEntity.ok(service.getProjectTimesheets(id));

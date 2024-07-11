@@ -29,7 +29,7 @@ public class ProjectPageController {
 
     @GetMapping("/{id}")
     public String getById(@PathVariable Long id, Model model) {
-        Optional<Project> project = service.getById(id);
+        Optional<Project> project = service.findById(id);
 
         if (project.isPresent()) {
             model.addAttribute(project.get());

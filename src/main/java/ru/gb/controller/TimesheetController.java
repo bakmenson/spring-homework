@@ -34,7 +34,7 @@ public class TimesheetController {
     // /timesheets/{id}
     @GetMapping("/{id}") // получить все
     public ResponseEntity<Timesheet> get(@PathVariable Long id) {
-        Optional<Timesheet> ts = service.getById(id);
+        Optional<Timesheet> ts = service.findById(id);
 
         //      return ResponseEntity.ok().body(ts.get());
         return ts.map(timesheet -> ResponseEntity.status(HttpStatus.OK).body(timesheet))
@@ -43,7 +43,7 @@ public class TimesheetController {
 
     @GetMapping // получить все
     public ResponseEntity<List<Timesheet>> getAll() {
-        return ResponseEntity.ok(service.getAll());
+        return ResponseEntity.ok(service.findAll());
     }
 
     @PostMapping // создание нового ресурса
