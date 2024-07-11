@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects</title>
+</head>
+<body>
+
+<h1>Projects</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Project</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="project : ${projects}">
+        <td><span th:text="${project.id}"></span></td>
+        <td><a th:href="@{'/home/projects/{id}'(id=${project.id})}">
+            <span th:text="${project.name}"></span>
+        </a></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
