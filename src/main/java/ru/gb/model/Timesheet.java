@@ -1,15 +1,31 @@
 package ru.gb.model;
 
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Data
+
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@Entity
+@Table(name = "timesheets")
 public class Timesheet {
 
-  private Long id;
-  private Long projectId;
-  private int minutes;
-  private LocalDate createdAt;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
+    @Column
+    private Long projectId;
+
+    @Column
+    private int minutes;
+
+    @Column
+    private LocalDate createdAt;
 
 }
