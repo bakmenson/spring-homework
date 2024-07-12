@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.NoSuchElementException;
 
 @Controller
-@ControllerAdvice
+@ControllerAdvice(basePackages = "ru.gb")
 public class ExceptionController {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
