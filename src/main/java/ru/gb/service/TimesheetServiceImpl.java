@@ -1,5 +1,6 @@
 package ru.gb.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.gb.model.Project;
 import ru.gb.model.Timesheet;
@@ -12,16 +13,12 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service // то же самое, что и Component
 public class TimesheetServiceImpl implements TimesheetService {
 
     private final TimesheetRepository repository;
     private final ProjectRepository projectRepository;
-
-    public TimesheetServiceImpl(TimesheetRepository repository, ProjectRepository projectRepository) {
-        this.repository = repository;
-        this.projectRepository = projectRepository;
-    }
 
     @Override
     public Optional<Timesheet> findById(Long id) {

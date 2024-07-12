@@ -1,5 +1,6 @@
 package ru.gb.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/timesheets")
 public class TimesheetController {
@@ -26,10 +28,6 @@ public class TimesheetController {
     // @PutMapping("/timesheets/{id}") // обновить конкретную запись по идентификатору
 
     private final TimesheetService service;
-
-    public TimesheetController(TimesheetService service) {
-        this.service = service;
-    }
 
     // /timesheets/{id}
     @GetMapping("/{id}") // получить все

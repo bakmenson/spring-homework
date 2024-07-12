@@ -1,5 +1,6 @@
 package ru.gb.page_controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,15 +11,12 @@ import ru.gb.service.ProjectService;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("/home/projects")
 public class ProjectPageController {
 
     private final ProjectService service;
-
-    public ProjectPageController(ProjectService service) {
-        this.service = service;
-    }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)

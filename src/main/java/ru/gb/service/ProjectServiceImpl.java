@@ -1,5 +1,6 @@
 package ru.gb.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.gb.model.Project;
 import ru.gb.model.Timesheet;
@@ -9,16 +10,12 @@ import ru.gb.repository.TimesheetRepository;
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
     private final ProjectRepository repository;
     private final TimesheetRepository timesheetRepository;
-
-    public ProjectServiceImpl(ProjectRepository repository, TimesheetRepository timesheetRepository) {
-        this.repository = repository;
-        this.timesheetRepository = timesheetRepository;
-    }
 
     @Override
     public List<Project> getProjects() {
