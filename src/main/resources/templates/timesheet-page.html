@@ -9,9 +9,10 @@
 </head>
 <body>
 <h1>Запись рабочего времени #<span th:text="${timesheet.id}"></span></h1>
-Проект:
+Проект #
+<a th:href="@{'/home/employees/{id}'(id=${employee.id})}"></a>
 <a th:href="@{'/home/projects/{id}'(id=${timesheet.projectId})}">
-    <span th:text="${timesheet.projectName}"></span>
+    <span th:text="${timesheet.projectId}"></span>
 </a> <br>
 Минут потрачено: <span th:text="${timesheet.minutes}"></span> <br>
 Дата создания: <span th:text="${timesheet.createdAt}"></span> <br>
