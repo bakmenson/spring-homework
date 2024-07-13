@@ -10,7 +10,7 @@ public interface ProjectService {
     List<Project> getProjects();
     Optional<Project> findById(Long id);
     Project create(Project project);
-    Optional<Project> update(Long id, Project project);
     void deleteById(Long id);
     List<Timesheet> getProjectTimesheets(Long id);
+    Optional<Project> update(Long id, Project project);
 }
