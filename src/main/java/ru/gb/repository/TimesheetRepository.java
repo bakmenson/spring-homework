@@ -6,7 +6,10 @@ import ru.gb.model.Timesheet;
 
 import java.util.List;
 
+//@Repository // @Component для классов, работающих с данными
+//public interface TimesheetRepository extends JpaRepository<Timesheet, Long> {
+//    List<Timesheet> findByProjectId(Long id);
+//}
 @Repository // @Component для классов, работающих с данными
-public interface TimesheetRepository extends JpaRepository<Timesheet, Long> {
-    List<Timesheet> findByProjectId(Long id);
+public interface TimesheetRepository extends TimesheetNeededRepository<Timesheet, Long> {
 }
