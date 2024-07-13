@@ -10,8 +10,8 @@ import java.util.Optional;
 @NoRepositoryBean
 public interface TimesheetNeededRepository <T, ID> extends Repository<T, ID> {
     List<T> findAll();
-    List<Timesheet> findByProjectId(Long id);
-    Optional<T> findById(Long id);
+    List<Timesheet> findByProjectId(ID id);
+    Optional<T> findById(ID id);
     T save(T entity);
-    void deleteById(Long id);
+    void deleteById(ID id);
 }
