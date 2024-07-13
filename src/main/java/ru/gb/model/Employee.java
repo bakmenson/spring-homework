@@ -1,18 +1,18 @@
 package ru.gb.model;
 
 import jakarta.persistence.*;
-import lombok.*;
-
-import java.time.LocalDate;
-
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
 @Entity
-@Table(name = "timesheets")
-public class Timesheet {
+@Table(name = "employees")
+public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,15 +20,9 @@ public class Timesheet {
     private Long id;
 
     @Column
-    private Long projectId;
+    private String name;
 
     @Column
-    private int minutes;
-
-    @Column
-    private LocalDate createdAt;
-
-    @Column
-    private Long employeeId;
+    private String surname;
 
 }

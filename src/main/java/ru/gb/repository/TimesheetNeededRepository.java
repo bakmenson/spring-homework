@@ -11,6 +11,7 @@ import java.util.Optional;
 public interface TimesheetNeededRepository <T, ID> extends Repository<T, ID> {
     List<T> findAll();
     List<Timesheet> findByProjectId(ID id);
+    List<Timesheet> findByEmployeeId(ID id);
     Optional<T> findById(ID id);
     T save(T entity);
     void deleteById(ID id);
