@@ -34,7 +34,8 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Optional<Project> update(Long id, Project project) {
-        return repository.update(id, project);
+        repository.update(id, project.getName());
+        return findById(id);
     }
 
     @Override
@@ -44,9 +45,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<Timesheet> getProjectTimesheets(Long id) {
-        return timesheetRepository.findAll().stream()
-                .filter(timesheet -> timesheet.getProjectId().equals(id))
-                .toList();
+        return timesheetRepository.findByProjectId(id);
     }
 
 }
