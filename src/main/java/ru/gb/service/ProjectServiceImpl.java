@@ -34,7 +34,8 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Optional<Project> update(Long id, Project project) {
-        repository.update(id, project.getName());
+        project.setId(id);
+        repository.save(project);
         return findById(id);
     }
 
