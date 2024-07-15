@@ -2,16 +2,14 @@ package ru.gb.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.gb.exception.ResourceNotFoundException;
 import ru.gb.model.Employee;
 import ru.gb.model.Project;
 import ru.gb.model.Timesheet;
 import ru.gb.repository.EmployeeRepository;
 import ru.gb.repository.TimesheetRepository;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -42,9 +40,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Optional<Employee> update(Long id, Employee employee) {
-        employee.setId(id);
-        repository.save(employee);
-        return findById(id);
+        Optional<Employee> needUpdate = findById(id);
+
+        if (needUpdate.isPresent()) {
+            employee.setId(id);
+            repository.save(employee);
+            return Optional.of(employee);
+        }
+
+        return Optional.empty();
     }
 
     @Override
@@ -60,7 +64,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             return repository.findAllProjects(employee.get());
         }
 
-        throw new NoSuchElementException("There is no projects by employee id #" + id);
+        return Collections.emptySet();
     }
 
 }

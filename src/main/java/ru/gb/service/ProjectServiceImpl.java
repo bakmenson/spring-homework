@@ -8,10 +8,7 @@ import ru.gb.model.Timesheet;
 import ru.gb.repository.ProjectRepository;
 import ru.gb.repository.TimesheetRepository;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -37,9 +34,15 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Optional<Project> update(Long id, Project project) {
-        project.setId(id);
-        repository.save(project);
-        return findById(id);
+        Optional<Project> needUpdate = findById(id);
+
+        if (needUpdate.isPresent()) {
+            project.setId(id);
+            repository.save(project);
+            return Optional.of(project);
+        }
+
+        return Optional.empty();
     }
 
     @Override
@@ -49,7 +52,10 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<Timesheet> getProjectTimesheets(Long id) {
-        return timesheetRepository.findByProjectId(id);
+        if (findById(id).isPresent()) {
+            return timesheetRepository.findByProjectId(id);
+        }
+        return Collections.emptyList();
     }
 
     @Override
@@ -60,7 +66,7 @@ public class ProjectServiceImpl implements ProjectService {
             return repository.findAllEmployee(project.get());
         }
 
-        throw new NoSuchElementException("There is no employees by project id #" + id);
+        return Collections.emptySet();
     }
 
 }

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.gb.exception.ResourceNotFoundException;
 import ru.gb.model.Timesheet;
 import ru.gb.service.TimesheetService;
 
@@ -34,9 +35,8 @@ public class TimesheetController {
     public ResponseEntity<Timesheet> get(@PathVariable Long id) {
         Optional<Timesheet> ts = service.findById(id);
 
-        //      return ResponseEntity.ok().body(ts.get());
         return ts.map(timesheet -> ResponseEntity.status(HttpStatus.OK).body(timesheet))
-                .orElseGet(() -> ResponseEntity.notFound().build());
+                .orElseThrow(() -> new ResourceNotFoundException("There is no timesheet with id #" + id));
     }
 
     @GetMapping // получить все
@@ -59,10 +59,13 @@ public class TimesheetController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
+        if (service.findById(id).isPresent()) {
+            service.delete(id);
+            // 204 No Content
+            return ResponseEntity.noContent().build();
+        }
 
-        // 204 No Content
-        return ResponseEntity.noContent().build();
+        throw new ResourceNotFoundException("There is no timesheet with id #" + id);
     }
 
     @GetMapping(params = "createdAfter")
