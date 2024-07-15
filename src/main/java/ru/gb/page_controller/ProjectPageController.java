@@ -5,11 +5,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.gb.model.Employee;
 import ru.gb.model.Project;
 import ru.gb.service.ProjectService;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @Controller
@@ -28,9 +30,11 @@ public class ProjectPageController {
     @GetMapping("/{id}")
     public String getById(@PathVariable Long id, Model model) {
         Optional<Project> project = service.findById(id);
+        Set<Employee> employees = service.findProjectEmployees(id);
 
         if (project.isPresent()) {
-            model.addAttribute(project.get());
+            model.addAttribute("project", project.get());
+            model.addAttribute("employees", employees);
             return "project-page";
         }
 

@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import ru.gb.model.Employee;
+import ru.gb.model.Project;
 import ru.gb.model.Timesheet;
 import ru.gb.service.EmployeeService;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @Controller
@@ -34,10 +36,12 @@ public class EmployeePageController {
     public String getById(@PathVariable Long id, Model model) {
         Optional<Employee> employee = service.findById(id);
         List<Timesheet> timesheets = service.findByEmployeeId(id);
+        Set<Project> projects = service.findEmployeeProjects(id);
 
         if (employee.isPresent()) {
             model.addAttribute("employee", employee.get());
             model.addAttribute("timesheets", timesheets);
+            model.addAttribute("projects", projects);
             return "employee-page";
         }
 

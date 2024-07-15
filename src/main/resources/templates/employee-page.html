@@ -34,5 +34,22 @@
     </tbody>
 </table>
 
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Project</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="project : ${projects}">
+        <td><span th:text="${project.id}"></span></td>
+        <td><a th:href="@{'/home/projects/{id}'(id=${project.id})}">
+            <span th:text="${project.name}"></span>
+        </a></td>
+    </tr>
+    </tbody>
+</table>
+
 </body>
 </html>
