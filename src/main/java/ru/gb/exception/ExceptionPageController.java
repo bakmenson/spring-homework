@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 
 @Controller
 @ControllerAdvice(basePackages = "ru.gb")
-public class ExceptionController {
+public class ExceptionPageController {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NoSuchElementException.class)
