@@ -1,10 +1,9 @@
 package ru.gb.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
+import java.util.Set;
 
 @Getter
 @Setter
@@ -24,5 +23,14 @@ public class Employee {
 
     @Column
     private String surname;
+
+    @ToString.Exclude
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "employee_project",
+            joinColumns = { @JoinColumn(name = "employee_id") },
+            inverseJoinColumns = { @JoinColumn(name = "project_id") }
+    )
+    private Set<Project> employeeProjects;
 
 }
