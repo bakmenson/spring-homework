@@ -5,11 +5,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.model.Employee;
+import ru.gb.model.Project;
 import ru.gb.model.Timesheet;
 import ru.gb.service.EmployeeServiceImpl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @RestController
@@ -60,6 +62,17 @@ public class EmployeeController {
         }
 
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/{id}/projects")
+    public ResponseEntity<Set<Project>> getEmployeeProjects(@PathVariable Long id) {
+        Set<Project> projects = service.findEmployeeProjects(id);
+
+        if (projects.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(projects);
     }
 
 }

@@ -4,12 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.gb.model.Employee;
 import ru.gb.model.Project;
 import ru.gb.model.Timesheet;
 import ru.gb.service.ProjectService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @RestController
@@ -60,6 +62,17 @@ public class ProjectController {
         }
 
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/{id}/employees")
+    public ResponseEntity<Set<Employee>> getProjectEmployees(@PathVariable Long id) {
+        Set<Employee> employees =  service.findProjectEmployees(id);
+
+        if (employees.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(employees);
     }
 
 }

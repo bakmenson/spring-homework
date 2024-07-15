@@ -3,6 +3,8 @@ package ru.gb.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 @Getter
 @Setter
 @ToString
@@ -18,5 +20,9 @@ public class Project {
 
     @Column(name = "name")
     private String name;
+
+    @ToString.Exclude
+    @ManyToMany(mappedBy = "employeeProjects")
+    private Set<Employee> projectEmployees;
 
 }

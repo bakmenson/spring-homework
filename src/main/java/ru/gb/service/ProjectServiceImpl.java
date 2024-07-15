@@ -2,13 +2,16 @@ package ru.gb.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.gb.model.Employee;
 import ru.gb.model.Project;
 import ru.gb.model.Timesheet;
 import ru.gb.repository.ProjectRepository;
 import ru.gb.repository.TimesheetRepository;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @Service
@@ -47,6 +50,17 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<Timesheet> getProjectTimesheets(Long id) {
         return timesheetRepository.findByProjectId(id);
+    }
+
+    @Override
+    public Set<Employee> findProjectEmployees(Long id) {
+        Optional<Project> project = findById(id);
+
+        if (project.isPresent()) {
+            return repository.findAllEmployee(project.get());
+        }
+
+        throw new NoSuchElementException("There is no employees by project id #" + id);
     }
 
 }
