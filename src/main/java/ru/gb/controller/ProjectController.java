@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.exception.ResourceNotFoundException;
 import ru.gb.model.Employee;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+@Secured("rest")
 @Tag(name = "Projects", description = "API для работы с проектами")
 @RequiredArgsConstructor
 @RestController

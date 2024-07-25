@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.exception.ResourceNotFoundException;
 import ru.gb.model.Timesheet;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@Secured("rest")
 @Tag(name = "Timesheets", description = "API для работы с записями учета рабочего времени")
 @RequiredArgsConstructor
 @RestController
