@@ -2,7 +2,6 @@ package ru.gb.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.gb.exception.ResourceNotFoundException;
 import ru.gb.model.Employee;
 import ru.gb.model.Project;
 import ru.gb.model.Timesheet;
