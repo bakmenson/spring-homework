@@ -34,7 +34,7 @@ public class LoggingAspect {
         String targetClassName = jp.getTarget().getClass().getSimpleName();
         String targetMethodName = jp.getSignature().getName();
 
-        log.info(String.format("Log: %s.%s(%s)", targetClassName, targetMethodName, args));
+        log.info("Log: {}.{}({})", targetClassName, targetMethodName, args);
     }
 
 }
