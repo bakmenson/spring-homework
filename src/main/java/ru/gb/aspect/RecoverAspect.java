@@ -24,7 +24,7 @@ public class RecoverAspect {
         } catch (Throwable e) {
             String className = pjp.getTarget().getClass().getSimpleName();
             String methodName = pjp.getSignature().getName();
-            log.info("Метов '{}' в классе '{}' выбросил исключение '{}'", methodName, className, e.getClass().getSimpleName());
+            log.info("Recovering {}#{} after Exception[{}.class, '{}'", className, methodName, e.getClass().getSimpleName(), e.getMessage());
 
             if (methodSignature.getReturnType().isPrimitive()) {
                 // возвращаем примитив
