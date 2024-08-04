@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import ru.gb.model.User;
+import ru.gb.service.RoleService;
 import ru.gb.service.UserService;
 
 import java.util.Set;
@@ -17,13 +18,14 @@ import java.util.stream.Collectors;
 public class CustomUserDetailsService implements UserDetailsService {
 
     private UserService userService;
+    private RoleService roleService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userService.findByLogin(username)
                 .orElseThrow(() -> new UsernameNotFoundException("There is not user with login '" + username + "'"));
 
-        Set<SimpleGrantedAuthority> roles = userService.findAllRoles(user).stream()
+        Set<SimpleGrantedAuthority> roles = roleService.findAllRoles(user).stream()
                 .map(it -> new SimpleGrantedAuthority(it.getName()))
                 .collect(Collectors.toSet());
 
