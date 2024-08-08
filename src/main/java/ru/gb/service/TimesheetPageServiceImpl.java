@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.gb.model.Project;
 import ru.gb.model.Timesheet;
-import ru.gb.page_controller.TimesheetPageDto;
+import ru.gb.controller.TimesheetPageDto;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;

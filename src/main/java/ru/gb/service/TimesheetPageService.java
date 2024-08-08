@@ -1,6 +1,6 @@
 package ru.gb.service;
 
-import ru.gb.page_controller.TimesheetPageDto;
+import ru.gb.controller.TimesheetPageDto;
 
 import java.util.List;
 import java.util.Optional;

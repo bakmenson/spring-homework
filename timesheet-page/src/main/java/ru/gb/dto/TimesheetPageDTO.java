@@ -1,4 +1,4 @@
-package ru.gb.controller;
+package ru.gb.dto;
 
 import lombok.Data;
 
@@ -7,12 +7,15 @@ import lombok.Data;
  * Т.е. он нужен для передачи параметров внутрь thymeleaf в тех контроллерах, которые сразу отдают HTML-страницы.
  */
 @Data
-public class TimesheetPageDto {
+public class TimesheetPageDTO {
 
-  private String projectId;
-  private String projectName;
-  private String id;
-  private String minutes;
-  private String createdAt;
+    private String projectId;
+    private String projectName;
+    private String employeeId;
+    private String employeeName;
+    private String employeeSurname;
+    private String id;
+    private String minutes;
+    private String createdAt;
 
 }
