@@ -13,8 +13,6 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class RecoverAspect {
 
-    // не уверен в правильном использовании ClassUtils
-
     @Around("@annotation(ru.gb.aspect.Recover)")
     public Object processRecoveryMethods(ProceedingJoinPoint pjp) {
         MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
@@ -27,12 +25,12 @@ public class RecoverAspect {
             log.info("Recovering {}#{} after Exception[{}.class, '{}'", className, methodName, e.getClass().getSimpleName(), e.getMessage());
 
             if (methodSignature.getReturnType().isPrimitive()) {
-                // возвращаем примитив
+                // TODO: для примитива нужно вернуть default-значение, сейчас возвращает null
                 return ClassUtils.wrapperToPrimitive(methodSignature.getReturnType());
             }
         }
-        // возвращаем null
-        return ClassUtils.primitiveToWrapper(methodSignature.getReturnType());
+
+        return null;
     }
 
 }
