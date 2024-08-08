@@ -51,7 +51,7 @@ public class ProjectServiceImpl implements ProjectService {
                     .body(new ParameterizedTypeReference<List<ProjectResponse>>() {
                     }));
         } catch (HttpClientErrorException.NotFound e) {
-            return result;
+            return List.of();
         }
 
         if (projectResponses.isPresent()) {
@@ -61,6 +61,8 @@ public class ProjectServiceImpl implements ProjectService {
                 projectPageDTO.setProjectName(response.getName());
                 result.add(projectPageDTO);
             }
+
+            return result;
         }
 
         return List.of();
