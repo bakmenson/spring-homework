@@ -44,7 +44,7 @@ public class TimesheetServiceImpl implements TimesheetService {
                     .body(new ParameterizedTypeReference<List<TimesheetResponse>>() {
                     }));
         } catch (HttpClientErrorException.NotFound e) {
-            return result;
+            return List.of();
         }
 
         if (timesheets.isPresent()) {
@@ -52,9 +52,11 @@ public class TimesheetServiceImpl implements TimesheetService {
                 Optional<TimesheetPageDTO> timesheetPageDTO = repository.getTimesheetPageDTO(timesheetResponse, restClient());
                 timesheetPageDTO.ifPresent(result::add);
             }
+
+            return result;
         }
 
-        return result;
+        return List.of();
     }
 
     @Override
