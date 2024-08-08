@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class RecoverAspect {
 
-    // не уверен в правильном использовании ClassUtils
+    // TODO: fix returning value if catch error, now incorrect returning
 
     @Around("@annotation(ru.gb.aspect.Recover)")
     public Object processRecoveryMethods(ProceedingJoinPoint pjp) {
@@ -33,8 +33,7 @@ public class RecoverAspect {
         }
         // возвращаем null
 //        return ClassUtils.primitiveToWrapper(methodSignature.getReturnType());
-//        return ClassUtils.wrapperToPrimitive(methodSignature.getReturnType());
-        return null;
+        return ClassUtils.wrapperToPrimitive(methodSignature.getReturnType());
     }
 
 }
