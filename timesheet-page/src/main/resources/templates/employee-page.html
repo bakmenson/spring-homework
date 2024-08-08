@@ -8,9 +8,9 @@
 
 <h1>Employee</h1>
 
-<h3>ID #<span th:text="${employee.id}"></span></h3>
-<h3>name: <span th:text="${employee.name}"></span></h3>
-<h3>surname: <span th:text="${employee.surname}"></span></h3>
+<h3>ID #<span th:text="${employee.employeeId}"></span></h3>
+<h3>name: <span th:text="${employee.employeeName}"></span></h3>
+<h3>surname: <span th:text="${employee.employeeSurname}"></span></h3>
 
 <table>
     <thead>
@@ -21,7 +21,7 @@
     </thead>
     <tbody>
     <tr th:each="timesheet : ${timesheets}">
-        <td><span th:text="${timesheet.id}"></span></td>
+        <td><span th:text="${timesheet.projectId}"></span></td>
         <td>
             <a th:href="@{'/projects/{id}'(id=${timesheet.projectId})}">
                 Project Id #<span th:text="${timesheet.projectId}"></span>
@@ -29,7 +29,7 @@
         </td>
         <td><span th:text="${timesheet.minutes}"></span></td>
         <td><span th:text="${timesheet.createdAt}"></span></td>
-        <td><a th:href="@{'/timesheets/{id}'(id=${timesheet.id})}">Timesheet</a></td>
+        <td><a th:href="@{'/timesheets/{id}'(id=${timesheet.projectId})}">Timesheet</a></td>
     </tr>
     </tbody>
 </table>

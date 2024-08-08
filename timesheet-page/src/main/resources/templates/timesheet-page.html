@@ -8,9 +8,9 @@
     <title>Home / Timesheet Page</title>
 </head>
 <body>
-<h1>Запись рабочего времени #<span th:text="${timesheet.id}"></span></h1>
+<h1>Запись рабочего времени #<span th:text="${timesheet.projectId}"></span></h1>
 Проект #
-<a th:href="@{'/employees/{id}'(id=${employee.id})}"></a>
+<a th:href="@{'/employees/{id}'(id=${employee.employeeId})}"></a>
 <a th:href="@{'/projects/{id}'(id=${timesheet.projectId})}">
     <span th:text="${timesheet.projectId}"></span>
 </a> <br>

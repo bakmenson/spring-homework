@@ -21,7 +21,7 @@
     </thead>
     <tbody>
     <tr th:each="timesheet : ${timesheets}">
-        <td><span th:text="${timesheet.id}"></span></td>
+        <td><span th:text="${timesheet.projectId}"></span></td>
         <td>
             <a th:href="@{'/projects/{id}'(id=${timesheet.projectId})}">
                 <span th:text="${timesheet.projectName}"></span>
@@ -29,7 +29,7 @@
         </td>
         <td><span th:text="${timesheet.minutes}"></span></td>
         <td><span th:text="${timesheet.createdAt}"></span></td>
-        <td><a th:href="@{'/timesheets/{id}'(id=${timesheet.id})}">Перейти к записи</a></td>
+        <td><a th:href="@{'/timesheets/{id}'(id=${timesheet.projectId})}">Перейти к записи</a></td>
     </tr>
     </tbody>
 </table>
