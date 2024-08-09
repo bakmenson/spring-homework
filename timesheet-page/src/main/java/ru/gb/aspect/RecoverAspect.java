@@ -25,7 +25,7 @@ public class RecoverAspect {
             log.info("Recovering {}#{} after Exception[{}.class, '{}'", className, methodName, e.getClass().getSimpleName(), e.getMessage());
 
             if (methodSignature.getReturnType().isPrimitive()) {
-                // TODO: для примитива нужно вернуть default-значение
+                // TODO: для примитива нужно вернуть default-значение, сейчас возвращает null
                 return ClassUtils.wrapperToPrimitive(methodSignature.getReturnType());
             }
         }
