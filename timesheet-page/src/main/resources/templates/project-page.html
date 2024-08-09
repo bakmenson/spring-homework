@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Page</title>
+</head>
+<body>
+
+<h1>Project</h1>
+
+<h3>Project ID #<span th:text="${project.projectId}"></span></h3>
+<h3>Project name: <span th:text="${project.projectName}"></span></h3>
+
+<h3>Employees</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Surname</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee : ${employees}">
+        <td><span th:text="${employee.employeeId}"></span></td>
+        <td><span th:text="${employee.employeeName}"></span></td>
+        <td><span th:text="${employee.employeeSurname}"></span></td>
+        <td><a th:href="@{'/employee/{id}'(id=${employee.employeeId})}">
+            <span>Go to Employee</span>
+        </a></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
